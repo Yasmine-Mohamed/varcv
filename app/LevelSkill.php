@@ -22,9 +22,11 @@ class LevelSkill extends Model
      * Get Skill of given Level associated with given user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+
     public function skills()
     {
         return $this->belongsToMany(Skill::class);
     }
+
 
 }

@@ -22,6 +22,7 @@ class CreateTemplatesTable extends Migration
 
         Schema::create('template_user', function (Blueprint $table) {
 
+            $table->increments('id');
             $table->string('social_auth_id')->index();
             $table->foreign('social_auth_id')->references('user_id')->on('auth_users')->onDelete('cascade');
 

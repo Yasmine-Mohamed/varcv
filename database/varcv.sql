@@ -37,16 +37,6 @@ CREATE TABLE `auth_users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_users`
---
-
-LOCK TABLES `auth_users` WRITE;
-/*!40000 ALTER TABLE `auth_users` DISABLE KEYS */;
-INSERT INTO `auth_users` VALUES (1,'2174205289471224','jessy.mohamed2014@gmail.com','facebook','l3JbsXIq029AWEfWVjdCGRC2xo3LMtwUTl26OHSgDXJMXUL22OPjwEMpseG6','2017-01-04 11:24:22','2017-01-10 14:09:35');
-/*!40000 ALTER TABLE `auth_users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `companies`
 --
 
@@ -70,15 +60,6 @@ CREATE TABLE `companies` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `companies`
---
-
-LOCK TABLES `companies` WRITE;
-/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
-/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `company_skill`
 --
 
@@ -86,25 +67,18 @@ DROP TABLE IF EXISTS `company_skill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `company_skill` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `company_id` int(10) unsigned NOT NULL,
   `skill_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `company_skill_company_id_index` (`company_id`),
   KEY `company_skill_skill_id_index` (`skill_id`),
-  CONSTRAINT `company_skill_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `company_skill_skill_id_foreign` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`) ON DELETE CASCADE
+  CONSTRAINT `company_skill_skill_id_foreign` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `company_skill_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `company_skill`
---
-
-LOCK TABLES `company_skill` WRITE;
-/*!40000 ALTER TABLE `company_skill` DISABLE KEYS */;
-/*!40000 ALTER TABLE `company_skill` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `data_users`
@@ -134,15 +108,6 @@ CREATE TABLE `data_users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `data_users`
---
-
-LOCK TABLES `data_users` WRITE;
-/*!40000 ALTER TABLE `data_users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `data_users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `education_node_user`
 --
 
@@ -165,15 +130,6 @@ CREATE TABLE `education_node_user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `education_node_user`
---
-
-LOCK TABLES `education_node_user` WRITE;
-/*!40000 ALTER TABLE `education_node_user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `education_node_user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `level_skill`
 --
 
@@ -186,18 +142,8 @@ CREATE TABLE `level_skill` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `level_skill`
---
-
-LOCK TABLES `level_skill` WRITE;
-/*!40000 ALTER TABLE `level_skill` DISABLE KEYS */;
-INSERT INTO `level_skill` VALUES (4,'Mid Level','2017-01-04 11:45:22','2017-01-04 11:45:41'),(5,'Entry Level','2017-01-04 11:46:00','2017-01-04 11:46:00'),(6,'Expert Level','2017-01-04 11:46:28','2017-01-04 11:46:28');
-/*!40000 ALTER TABLE `level_skill` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `migrations`
@@ -211,18 +157,8 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `migrations`
---
-
-LOCK TABLES `migrations` WRITE;
-/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_auth_users_table',1),(2,'2016_12_26_134802_create_data_users_table',1),(3,'2016_12_26_135113_create_phone_user_table',1),(4,'2016_12_26_135444_create_education_node_user_table',1),(5,'2016_12_26_135638_create_work_experience_user_table',1),(6,'2016_12_26_135800_create_templates_table',1),(7,'2016_12_26_140425_create_companies_table',1),(8,'2016_12_26_140523_create_level_skill_table',1),(10,'2016_12_26_140600_create_skills_table',2);
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `phone_user`
@@ -244,15 +180,6 @@ CREATE TABLE `phone_user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `phone_user`
---
-
-LOCK TABLES `phone_user` WRITE;
-/*!40000 ALTER TABLE `phone_user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `phone_user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `skill_social_auth`
 --
 
@@ -260,30 +187,22 @@ DROP TABLE IF EXISTS `skill_social_auth`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `skill_social_auth` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `social_auth_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `skill_id` int(10) unsigned NOT NULL,
   `level_id` int(10) unsigned DEFAULT NULL,
   `working_years` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `skill_social_auth_social_auth_id_index` (`social_auth_id`),
   KEY `skill_social_auth_skill_id_index` (`skill_id`),
   KEY `skill_social_auth_level_id_index` (`level_id`),
   CONSTRAINT `skill_social_auth_level_id_foreign` FOREIGN KEY (`level_id`) REFERENCES `level_skill` (`id`) ON DELETE CASCADE,
   CONSTRAINT `skill_social_auth_skill_id_foreign` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`) ON DELETE CASCADE,
   CONSTRAINT `skill_social_auth_social_auth_id_foreign` FOREIGN KEY (`social_auth_id`) REFERENCES `auth_users` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `skill_social_auth`
---
-
-LOCK TABLES `skill_social_auth` WRITE;
-/*!40000 ALTER TABLE `skill_social_auth` DISABLE KEYS */;
-INSERT INTO `skill_social_auth` VALUES ('2174205289471224',1,4,'3','2017-01-04 17:23:13','2017-01-04 17:23:13'),('2174205289471224',2,5,'1','2017-01-04 17:23:26','2017-01-04 17:23:26');
-/*!40000 ALTER TABLE `skill_social_auth` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `skills`
@@ -299,18 +218,8 @@ CREATE TABLE `skills` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `skills`
---
-
-LOCK TABLES `skills` WRITE;
-/*!40000 ALTER TABLE `skills` DISABLE KEYS */;
-INSERT INTO `skills` VALUES (1,'PHP','work','2017-01-04 11:47:16','2017-01-04 11:47:16'),(2,'Ruby','work','2017-01-04 11:47:34','2017-01-04 11:47:34'),(3,'Wordpress','work','2017-01-04 11:47:46','2017-01-04 11:47:46'),(4,'Team Leader','personal','2017-01-04 11:48:13','2017-01-04 11:48:13'),(5,'Communication Skills','personal','2017-01-04 11:48:36','2017-01-04 11:48:36');
-/*!40000 ALTER TABLE `skills` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `template_user`
@@ -320,25 +229,18 @@ DROP TABLE IF EXISTS `template_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `template_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `social_auth_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `template_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `template_user_social_auth_id_index` (`social_auth_id`),
   KEY `template_user_template_id_index` (`template_id`),
-  CONSTRAINT `template_user_social_auth_id_foreign` FOREIGN KEY (`social_auth_id`) REFERENCES `auth_users` (`user_id`) ON DELETE CASCADE,
-  CONSTRAINT `template_user_template_id_foreign` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`) ON DELETE CASCADE
+  CONSTRAINT `template_user_template_id_foreign` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `template_user_social_auth_id_foreign` FOREIGN KEY (`social_auth_id`) REFERENCES `auth_users` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `template_user`
---
-
-LOCK TABLES `template_user` WRITE;
-/*!40000 ALTER TABLE `template_user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `template_user` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `templates`
@@ -356,15 +258,6 @@ CREATE TABLE `templates` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `templates`
---
-
-LOCK TABLES `templates` WRITE;
-/*!40000 ALTER TABLE `templates` DISABLE KEYS */;
-/*!40000 ALTER TABLE `templates` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `work_experience_user`
@@ -386,17 +279,8 @@ CREATE TABLE `work_experience_user` (
   PRIMARY KEY (`id`),
   KEY `work_experience_user_social_auth_id_foreign` (`social_auth_id`),
   CONSTRAINT `work_experience_user_social_auth_id_foreign` FOREIGN KEY (`social_auth_id`) REFERENCES `auth_users` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `work_experience_user`
---
-
-LOCK TABLES `work_experience_user` WRITE;
-/*!40000 ALTER TABLE `work_experience_user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `work_experience_user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -407,4 +291,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-15 18:09:11
+-- Dump completed on 2017-01-18 16:29:30

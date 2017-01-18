@@ -33,8 +33,9 @@ class Skill extends Model
      * Get Level of Skill associated with given User
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+
     public function levels()
     {
-        return $this->belongsToMany(LevelSkill::class);
+        return $this->belongsToMany(LevelSkill::class , 'skill_social_auth','skill_id','level_id');
     }
 }

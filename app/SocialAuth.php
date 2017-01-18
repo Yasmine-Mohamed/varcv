@@ -95,16 +95,13 @@ class SocialAuth extends Authenticatable
 
     /**
      * Get the skills associated with given user
+     * Return working years and skill id as pivot columns
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
 
     public function skills()
     {
-        return $this->belongsToMany(Skill::class);
+        return $this->belongsToMany(Skill::class)->withPivot('skill_id','working_years')->withTimestamps();
     }
 
-    public function levels()
-    {
-        return $this->hasManyThrough(LevelSkill::class , Skill::class);
-    }
 }
