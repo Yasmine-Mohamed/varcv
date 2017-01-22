@@ -35,7 +35,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Skill' => $baseDir . '/app/Skill.php',
-    'App\\SkillUser' => $baseDir . '/app/SkillUser.php',
+    'App\\SkillUser' => $baseDir . '/app/SkillSocialAuth.php',
     'App\\SocialAuth' => $baseDir . '/app/SocialAuth.php',
     'App\\Template' => $baseDir . '/app/Template.php',
     'App\\WorkExperienceUser' => $baseDir . '/app/WorkExperienceUser.php',

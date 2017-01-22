@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\LevelSkill;
 use App\Skill;
-use App\SkillUser;
-use App\SocialAuth;
+use App\SkillSocialAuth;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class SkillsController extends Controller
 {
@@ -18,9 +18,10 @@ class SkillsController extends Controller
 
     public function index()
     {
-        $skills = Auth::user()->skills()->get();
+        $authUserSkills = SkillSocialAuth::with('skills','levels')
+            ->where('social_auth_id','=', Auth::user()->user_id)->get();
 
-        return view('skills.index',compact('skills'));
+        return view('skills.index',compact('authUserSkills'));
     }
 
     /**
@@ -49,33 +50,36 @@ class SkillsController extends Controller
     public function store(Request $request)
 
     {
-        $userSkill = SkillUser::where('skill_id','=', $request->input('skill_id'))->first();
+        $existSkills = DB::table('skill_social_auth')
+            ->where('social_auth_id','=',Auth::user()->user_id)
+            ->where('skill_id','=',$request->input('skill_id'))
+            ->first();
 
-        if($userSkill){
-
-           return redirect('skills');
-
-        }else{
+        if(is_null($existSkills)){
 
             Auth::user()->skills()
                 ->attach($request->input('skill_id'),[
-                    'level_id' => $request->input('level_id'),
-                    'working_years' => $request->input('working_years')
-                ]);
+                        'level_id' => $request->input('level_id'),
+                        'working_years' => $request->input('working_years')
+                    ]
+                );
 
             return redirect('skills');
-        }
 
+        }else{
+
+            return redirect('skills');
+
+        }
     }
 
     /**
      * Get work skills , personal skills and levels
-     * Use skill id in pivot table to get user's skill
-     * @param $skillId
+     * @param $userSkillId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
 
-    public function edit($skillId)
+    public function edit($userSkillId)
     {
         $workSkills = Skill::where('skill_type' , '=' , 'work')->pluck('skill_name','id');
 
@@ -83,29 +87,23 @@ class SkillsController extends Controller
 
         $levels = LevelSkill::pluck('level_name','id');
 
-        $userSkill = SkillUser::where('skill_id','=',$skillId)->firstOrFail();
+        $userSkill = SkillSocialAuth::find($userSkillId);
 
         return view('skills.edit',compact('userSkill','workSkills','personalSkills','levels'));
     }
 
     /**
-     * Update user's skill using skill id in pivot table
+     * Update user's skill in pivot table
      * @param Request $request
-     * @param $skillId
+     * @param $userSkillId
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
 
-    public function update(Request $request , $skillId)
+    public function update(Request $request , $userSkillId)
     {
-        $userSkill = SkillUser::where('skill_id','=',$skillId)->firstOrFail();
+        $userSkill = SkillSocialAuth::find($userSkillId);
 
-        $userSkill->skill_id = $request->input('skill_id');
-
-        $userSkill->level_id = $request->input('level_id');
-
-        $userSkill->working_years = $request->input('working_years');
-
-        $userSkill->save();
+        $userSkill->update($request->all());
 
         return redirect('skills');
     }

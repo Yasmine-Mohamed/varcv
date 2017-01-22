@@ -4,23 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class SkillSocialAuth extends Model
 {
+    public $table = 'skill_social_auth';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
 
-    public $table = 'skills';
-
     protected $fillable = [
-        'skill_name','skill_type',
+
+        'social_auth_id','skill_id','level_id','working_years'
     ];
 
-
     /**
-     * Get the Users associated with given Skill
+     * Get all users in the pivot table
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
 
@@ -30,21 +30,22 @@ class Skill extends Model
     }
 
     /**
-     * Get Level of Skill associated with given User
+     * Get all skills in the pivot table
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class,'skill_social_auth','id','skill_id');
+    }
+
+    /**
+     * Get all levels in the pivot table
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
 
     public function levels()
     {
-        return $this->belongsToMany(LevelSkill::class , 'skill_social_auth','skill_id','level_id');
-    }
-
-    /**
-     * Get Skills with levels belong to auth user
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function skillSocialAuth()
-    {
-        return $this->belongsToMany(SkillSocialAuth::class,'skill_social_auth');
+        return $this->belongsToMany(LevelSkill::class,'skill_social_auth','id','level_id');
     }
 }

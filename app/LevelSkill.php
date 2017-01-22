@@ -25,7 +25,16 @@ class LevelSkill extends Model
 
     public function skills()
     {
-        return $this->belongsToMany(Skill::class);
+        return $this->belongsToMany(Skill::class,'skill_social_auth','level_id','skill_id');
+    }
+
+    /**
+     * Get levels of skills belong to auth user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function skillSocialAuth()
+    {
+        return $this->belongsToMany(SkillSocialAuth::class,'skill_social_auth');
     }
 
 

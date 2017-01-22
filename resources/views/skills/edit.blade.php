@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    {!! Form::model($userSkill ,['method' => 'PATCH' , 'action' => ['SkillsController@update' , $userSkill->skill_id ]] ) !!}
+    {!! Form::model($userSkill ,['method' => 'PATCH' , 'action' => ['SkillsController@update' , $userSkill->id ]] ) !!}
     <div class="form-group">
         {!! Form::label('workSkills','Work Skills : ') !!}
         {!! Form::select('skill_id',$workSkills, null, ['class' => 'form-control']) !!}
