@@ -26,3 +26,8 @@ Route::resource('/user','DataUserController');
 Route::resource('/education','EducationUserController');
 Route::resource('/workExperience','WorkExperienceController');
 Route::resource('/skills','SkillsController');
+
+
+Route::get('/mails/sendmail','MailsController@createMail');
+Route::post('/mails','MailsController@sendMail');
+//Route::controller('mails','MailsController');

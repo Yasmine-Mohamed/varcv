@@ -62,6 +62,7 @@
                                         <a href="{{ url('/education') }}">Education</a>
                                         <a href="{{ url('/workExperience') }}">Work Experience</a>
                                         <a href="{{ url('/skills') }}">Skills</a>
+                                        <a href="{{ url('/mails/sendmail') }}">Send Mail</a>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
