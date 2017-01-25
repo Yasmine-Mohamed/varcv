@@ -30,4 +30,5 @@ Route::resource('/skills','SkillsController');
 
 Route::get('/mails/sendmail','MailsController@createMail');
 Route::post('/mails','MailsController@sendMail');
-//Route::controller('mails','MailsController');
+
+Route::get('/createpdf', array('as' => 'createpdf','uses' => 'PDFController@createPdf'));
