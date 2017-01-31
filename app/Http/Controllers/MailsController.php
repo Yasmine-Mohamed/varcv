@@ -13,13 +13,16 @@ class MailsController extends Controller
         return view('mails.create');
     }
 
+    /**
+     * Send the message
+     * @param Request $request
+     */
+
     public function sendMail(Request $request)
     {
         $to = $request->input('to');
 
         $email = $request->except(['to','_token']);
-
-//        dd($request->file('attachment'));
 
         Mail::to($to)->send(new SendMail($email));
 

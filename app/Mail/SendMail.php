@@ -33,6 +33,10 @@ class SendMail extends Mailable
         return $this
             ->from($this->email['from'])
             ->subject($this->email['subject'])
+            ->attach($this->email['file']->getRealPath(),[
+                    'as' => $this->email['file']->getClientOriginalName(),
+                ]
+            )
             ->view('mails.mail');
     }
 }

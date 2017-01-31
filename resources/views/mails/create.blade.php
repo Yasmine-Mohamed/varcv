@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    {!! Form::open(['action' => 'MailsController@sendMail']) !!}
+    {!! Form::open(['action' => 'MailsController@sendMail','files' => true]) !!}
 
     <div class="form-group">
         {!! Form::label('to','To:') !!}
