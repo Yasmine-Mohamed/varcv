@@ -49,13 +49,33 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                        @else
+                        @if(Auth::guard('auth_company')->user())
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::guard('auth_company')->user()->company_email }} <span class="caret"></span>
                                 </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/company_logout') }}"
+                                           onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ url('/company_logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        @elseif(Auth::user())
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->email }} <span class="caret"></span>
+                                </a>
+
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ url('/user') }}">Data</a>
@@ -75,13 +95,17 @@
                                     </li>
                                 </ul>
                             </li>
+                            @else
+                                <li><a href="{{ url('/login') }}">Login User</a></li>
+                                <li><a href="{{ url('/company_login') }}">Login Company</a></li>
                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
+
         <div class="container">
-            @yield('content')
+           @yield('content')
         </div>
 
     </div>

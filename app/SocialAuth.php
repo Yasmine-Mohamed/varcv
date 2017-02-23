@@ -20,8 +20,6 @@ class SocialAuth extends Authenticatable
         'auth_users'
     ;
 
-
-
     protected $fillable = [
         'user_id', 'email', 'provider',
     ];

@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+/**
+ * User Stories
+ */
+
 Route::get('/login/redirect/{provider}', ['uses' => 'SocialAuthController@redirect', 'as' => 'login']);
 Route::get('/login/{provider}' , 'SocialAuthController@callback');
 
@@ -28,7 +32,19 @@ Route::resource('/workExperience','WorkExperienceController');
 Route::resource('/skills','SkillsController');
 
 
+
 Route::get('/mails/sendmail','MailsController@createMail');
 Route::post('/mails','MailsController@sendMail');
 
 Route::get('/createpdf', array('as' => 'createpdf','uses' => 'PDFController@createPdf'));
+
+/**
+ * Company Stories
+ */
+
+Route::get('company_login','CompanyAuth\LoginController@showLoginForm');
+Route::post('company_login','CompanyAuth\LoginController@login');
+Route::post('company_logout','CompanyAuth\LoginController@logout');
+
+Route::get('/company_home','CompanyHomeController@index');
+

@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'usersData',
         ],
+
+        'auth_company' => [
+            'driver' => 'session',
+            'provider' => 'auth_companies',
+        ],
     ],
 
     /*
@@ -67,7 +72,12 @@ return [
     'providers' => [
         'usersData' => [
             'driver' => 'eloquent',
-            'model' => App\SocialAuth::class,
+            'model' => App\SocialAuth::class
+        ],
+
+        'auth_companies' => [
+            'driver' => 'eloquent',
+            'model' => App\CompanyAuth::class
         ],
 
         // 'usersData' => [

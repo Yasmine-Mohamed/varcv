@@ -37,10 +37,10 @@ class CreateSkillsTable extends Migration
 
         });
 
-        Schema::create('company_skill' , function (Blueprint $table) {
+        Schema::create('auth_company_skill' , function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned()->index();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('auth_companies')->onDelete('cascade');
 
             $table->integer('skill_id')->unsigned()->index();
             $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
@@ -58,6 +58,6 @@ class CreateSkillsTable extends Migration
     {
         Schema::dropIfExists('skills');
         Schema::dropIfExists('skill_social_auth');
-        Schema::dropIfExists('company_skill');
+        Schema::dropIfExists('auth_company_skill');
     }
 }

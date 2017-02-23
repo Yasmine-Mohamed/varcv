@@ -47,4 +47,9 @@ class Skill extends Model
     {
         return $this->belongsToMany(SkillSocialAuth::class,'skill_social_auth');
     }
+
+    public function companies()
+    {
+        return $this->belongsToMany(CompanyAuth::class);
+    }
 }
