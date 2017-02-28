@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    {!! Form::open(['url' => 'company']) !!}
+    {!! Form::model($companyData,['method' => 'PATCH' , 'action' => ['CompaniesController@update' , $companyData->id ]]) !!}
 
     <div class="form-group">
         {!! Form::label('company_name','Company Name : ') !!}
@@ -16,16 +16,16 @@
         {!! Form::text('address', null, ['class' => 'form-control']) !!}
         <br>
         {!! Form::label('foundation_date','Foundation Date : ') !!}
-        {!! Form::input('date','foundation_date',date('Y-m-d'), ['class' => 'form-control']) !!}
+        {!! Form::input('date','foundation_date',$companyData->foundation_date, ['class' => 'form-control']) !!}
         <br>
         {!! Form::label('current_employees_num','Current Employees Num : ') !!}
         {!! Form::text('current_employees_num', null, ['class' => 'form-control']) !!}
         <br>
         {!! Form::label('skills','Skills You Searched For:') !!}
-        {!! Form::select('skills[]',$skills ,null, ['id' => 'skills','class'=>'form-control', 'multiple']) !!}
+        {!! Form::select('skills[]',$skills,$companySkillsArray, ['id' => 'skills','class'=>'form-control', 'multiple']) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Add Data', ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Update Data', ['class' => 'btn btn-primary form-control']) !!}
     </div>
     {!! Form::close() !!}
 

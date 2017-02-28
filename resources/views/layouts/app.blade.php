@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/select2.min.css" rel="stylesheet" />
 
     <!-- Scripts -->
     <script>
@@ -58,6 +59,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ url('/company') }}">Data</a>
                                         <a href="{{ url('/company_logout') }}"
                                            onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -112,5 +114,8 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+    @yield('footer')
 </body>
 </html>

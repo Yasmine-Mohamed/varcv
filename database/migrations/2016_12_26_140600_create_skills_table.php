@@ -39,8 +39,8 @@ class CreateSkillsTable extends Migration
 
         Schema::create('auth_company_skill' , function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id')->unsigned()->index();
-            $table->foreign('company_id')->references('id')->on('auth_companies')->onDelete('cascade');
+            $table->integer('company_auth_id')->unsigned()->index();
+            $table->foreign('company_auth_id')->references('id')->on('auth_companies')->onDelete('cascade');
 
             $table->integer('skill_id')->unsigned()->index();
             $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');

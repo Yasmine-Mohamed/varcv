@@ -32,7 +32,6 @@ Route::resource('/workExperience','WorkExperienceController');
 Route::resource('/skills','SkillsController');
 
 
-
 Route::get('/mails/sendmail','MailsController@createMail');
 Route::post('/mails','MailsController@sendMail');
 
@@ -47,4 +46,6 @@ Route::post('company_login','CompanyAuth\LoginController@login');
 Route::post('company_logout','CompanyAuth\LoginController@logout');
 
 Route::get('/company_home','CompanyHomeController@index');
+
+Route::resource('/company','CompaniesController');
 

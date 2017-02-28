@@ -14,6 +14,15 @@ class DataCompany extends Model
 
     protected $fillable = [
         'company_name','owner_name','industry_field',
-        'address','foundation_date','current_employees_num',
+        'address','foundation_date','current_employees_num','company_id'
     ];
+
+    /**
+     * Company's data is belongs to an auth company
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function company()
+    {
+        return $this->belongsTo(CompanyAuth::class);
+    }
 }

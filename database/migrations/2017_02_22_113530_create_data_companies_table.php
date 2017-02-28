@@ -23,8 +23,8 @@ class CreateDataCompaniesTable extends Migration
             $table->string('current_employees_num')->nullable();
             $table->timestamps();
 
-            $table->integer('company_id')->unsigned()->index();
-            $table->foreign('company_id')->references('id')->on('auth_companies')->onDelete('cascade');
+            $table->integer('company_auth_id')->unsigned()->index();
+            $table->foreign('company_auth_id')->references('id')->on('auth_companies')->onDelete('cascade');
         });
     }
 

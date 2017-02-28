@@ -48,8 +48,12 @@ class Skill extends Model
         return $this->belongsToMany(SkillSocialAuth::class,'skill_social_auth');
     }
 
+    /**
+     * Get auth company associated with given skills
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function companies()
     {
-        return $this->belongsToMany(CompanyAuth::class);
+        return $this->belongsToMany(CompanyAuth::class,'auth_company_skill','skill_id','company_auth_id');
     }
 }

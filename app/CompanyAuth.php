@@ -6,7 +6,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class CompanyAuth extends Authenticatable
 {
 
-//    protected $guard = 'auth_company';
+    public $table = 'auth_companies';
+
 
     /**
      * The attributes that are mass assignable.
@@ -23,12 +24,20 @@ class CompanyAuth extends Authenticatable
      *
      * @var array
      */
+
     protected $hidden = [
         'remember_token',
     ];
 
-    public $table = 'auth_companies';
+    /**
+     * An auth company has some data
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
 
+    public function companyData()
+    {
+        return $this->hasOne(DataCompany::class);
+    }
 
     /**
      * Get the Skills that given Company is looking for
@@ -36,11 +45,8 @@ class CompanyAuth extends Authenticatable
      */
     public function skills()
     {
-        return $this->belongsToMany(Skill::class);
+        return $this->belongsToMany(Skill::class,'auth_company_skill','company_auth_id','skill_id')->withTimestamps();
     }
 
-    public function companyData()
-    {
-        return $this->hasOne(DataCompany::class);
-    }
+
 }
